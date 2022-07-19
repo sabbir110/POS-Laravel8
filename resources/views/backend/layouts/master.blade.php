@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="{{asset('backend/datatable/datatables.min.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    @stack('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -108,7 +111,7 @@
         {{-- Body part end --}}
 
         <footer class="main-footer">
-            <strong>Copyright &copy;<a href="#">POS System</a>.</strong>
+            <strong>Copyright &copy;POS System.</strong>
             <div class="float-right d-none d-sm-inline-block">
                 <b>Design and development By</b> POS System
             </div>
@@ -146,10 +149,9 @@
     <script src="{{ asset('backend') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('backend') }}/dist/js/adminlte.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    {{-- <script src="{{ asset('backend') }}/dist/js/demo.js"></script> --}}
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    {{-- <script src="{{ asset('backend') }}/dist/js/pages/dashboard.js"></script> --}}
+    <script src="{{asset('backend/datatable/datatables.min.js')}}"></script>
+    @stack('js')
+
 </body>
 
 </html>
