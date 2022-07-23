@@ -1,63 +1,66 @@
 @extends('backend.layouts.master')
 @push('css')
-
 @endpush
 @section('content')
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Manage User</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="">Manage</a></li>
-                                <li class="breadcrumb-item active">User</li>
-                            </ol>
-                        </div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Manage User</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="">Manage</a></li>
+                            <li class="breadcrumb-item active">User</li>
+                        </ol>
                     </div>
                 </div>
             </div>
-            <section class="content">
-                <div class="container-fluid">
-                    <!-- Main row -->
-                    <div class="row">
-                        <!-- Left col -->
-                        <section class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>User List </h4>
-                                </div>
-                                <div class="card-body">
-                                    <table id="datatable" class=" table table-striped table-sm text-center align-middle  table-bordered table-hover" style="width: 100%">
-                                        <thead>
-                                            <tr>
-                                                <th>SL.</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Created At</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Main row -->
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h5>User List </h5>
+                                <button class="btn btn-secondary ml-auto  btn-sm open_modal" data-modal="common_modal_md" data-action="{{ route('user.create.form') }}" data-title="Add User">
+                                    <i class="bi-plus-circle me-2"></i>
+                                    Add User</button>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatable"
+                                    class=" table table-striped table-sm text-center align-middle  table-bordered table-hover"
+                                    style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>SL.</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Created At</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 @endsection
 @push('js')
     <script>
-
         //Fetch Data
         $(function() {
             var table = $('#datatable').DataTable({
@@ -99,7 +102,5 @@
                 ]
             })
         })
-
-
     </script>
 @endpush

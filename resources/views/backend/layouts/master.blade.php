@@ -28,13 +28,17 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.css">
-    <link rel="stylesheet" href="{{asset('backend/datatable/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('backend/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     @stack('css')
+    <!-- jQuery -->
+    <script src="{{ asset('backend') }}/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('backend/custom_file/common.js') }}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
+        @include('backend.common_file.common_modal')
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
@@ -43,18 +47,12 @@
         </div>
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header d-flex navbar-expand"
+            style="background-image: linear-gradient(rgba(24, 56, 68, 0.642), rgba(24, 56, 68, 0.642));">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a class="nav-link text-light" data-widget="pushmenu" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -62,7 +60,7 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link text-light" data-toggle="dropdown" href="#">
                         <span>{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -119,8 +117,7 @@
     </div>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="{{ asset('backend') }}/plugins/jquery/jquery.min.js"></script>
+
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('backend') }}/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -149,7 +146,7 @@
     <script src="{{ asset('backend') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('backend') }}/dist/js/adminlte.js"></script>
-    <script src="{{asset('backend/datatable/datatables.min.js')}}"></script>
+    <script src="{{ asset('backend/datatable/datatables.min.js') }}"></script>
     @stack('js')
 
 </body>

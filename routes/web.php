@@ -16,4 +16,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('users')->group(function () {
     Route::get('/view', [UserController::class, 'view'])->name('user.view');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
+    Route::get('/create/form', [UserController::class, 'createForm'])->name('user.create.form');
 });

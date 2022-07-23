@@ -33,4 +33,8 @@ class UserController extends Controller
     public function create(){
         return "<h1>Create User</h1>";
     }
+
+    public function createForm(){
+        return view('backend.user.create_user_form');
+    }
 }
