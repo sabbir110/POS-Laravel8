@@ -1,5 +1,6 @@
 @extends('backend.layouts.master')
 @push('css')
+<link rel="stylesheet" href="{{ asset('backend/datatable/datatables.min.css') }}">
 @endpush
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -60,6 +61,7 @@
     <!-- /.content-wrapper -->
 @endsection
 @push('js')
+<script src="{{ asset('backend/datatable/datatables.min.js') }}"></script>
     <script>
         //Fetch Data
         $(function() {

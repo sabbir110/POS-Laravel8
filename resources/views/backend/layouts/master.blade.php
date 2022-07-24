@@ -25,10 +25,9 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ asset('backend') }}/plugins/daterangepicker/daterangepicker.css">
+    {{-- <link rel="stylesheet" href="{{ asset('backend') }}/plugins/daterangepicker/daterangepicker.css"> --}}
     <!-- summernote -->
-    <link rel="stylesheet" href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.css">
-    <link rel="stylesheet" href="{{ asset('backend/datatable/datatables.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.css"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     @stack('css')
     <!-- jQuery -->
@@ -141,12 +140,11 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{ asset('backend') }}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
-    <script src="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.js"></script>
+    {{-- <script src="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.js"></script> --}}
     <!-- overlayScrollbars -->
     <script src="{{ asset('backend') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('backend') }}/dist/js/adminlte.js"></script>
-    <script src="{{ asset('backend/datatable/datatables.min.js') }}"></script>
     @stack('js')
 
 </body>
