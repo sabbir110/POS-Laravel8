@@ -1,41 +1,54 @@
-@php
-$stuData = isset($stuData) && !empty($stuData) ? $stuData : [];
-$name = isset($stuData->name) ? $stuData->name : '';
-$id = isset($stuData->id) ? $stuData->id : '';
-$student_img = isset($stuData->image) ? $stuData->image : '';
-// dd($id);
-@endphp
-
-
-<form action="" id="student_form" method="POST" enctype="multipart/form-data">
-    @csrf
-    <input type="hidden" name="student_id" value="{{ $id }}">
-    <input type="hidden" name="student_img" value="{{$student_img}}">
-
-    <div class="my-2">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" class="form-control" placeholder="Your Name"
-            value="{{ $name }}">
-        <span class="text-danger error_text name-error"></span>
-    </div>
-    <div class="my-2">
-        <label for="">Image</label>
-        <input type="file" name="image" id="upload_img" class="form-control">
-        <span class="text-danger error_text image-error"></span>
-    </div>
-
-    <div class="my-2" style="width: 80px;height:80px">
-        <img id="" class="img-thumbnail rounded show_img"
-            src="{{ !empty($stuData->image) ? url('/storage/student_image/' . $stuData->image) : '' }}"
-            style="float: left;width:100%;height:100%" alt="No Image">
-    </div>
-    <div class="text-end">
         @php
-            // $url = route('student.index');
+        $userData = isset($userData) && !empty($userData) ? $userData : [];
+        $name = isset($userData->name) ? $userData->name : '';
+        $email = isset($userData->email) ? $userData->email : '';
+        $user_type = isset($userData->user_type) ? $userData->user_type : '';
+        $id = isset($userData->id) ? $userData->id : '';
+        // dd($id);
         @endphp
-        <button type="submit" onclick="saveUpdate(this,'')" class="btn btn-primary">Save</button>
-    </div>
-</form>
-<script>
-    imageShow('#upload_img','.show_img')
-</script>
+        <form action="{{ route('user.store') }}" id="user_form" method="POST">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ $id }}">
+        <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="">User Role</label>
+            <select name="user_type" class="form-control">
+                <option value="">Select Role</option>
+                <option value="admin" {{ $user_type=="admin"? "selected" : "" }} >Admin</option>
+                <option value="user" {{ $user_type=="user"? "selected" : "" }}>User</option>
+            </select>
+            <span class="text-danger error_text user_type-error"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="">Name</label>
+            <input type="text" name="name" class="form-control" value="{{ $name }}" placeholder="Enter Name">
+            <span class="text-danger error_text name-error"></span>
+        </div>
+        @if ($userData=='' || $userData== null)
+        <div class="form-group col-md-4">
+            <label for="">Email</label>
+            <input type="email" name="email" value="{{ $email }}" class="form-control" placeholder="Enter Email">
+            <span class="text-danger error_text email-error"></span>
+        </div>
+        @endif
+
+        <div class="form-group col-md-4">
+            <label for="">Password</label>
+            <input type="password" name="password1" class="form-control" placeholder="Enter Password">
+            <span class="text-danger error_text password1-error"></span>
+        </div>
+        @if ($userData=='' || $userData== null)
+        <div class="form-group col-md-4">
+            <label for="">Confirm Password</label>
+            <input type="password" name="password2" class="form-control" placeholder="Confirm Password">
+            <span class="text-danger error_text password2-error"></span>
+        </div>
+        @endif
+        <div class="form-group col-md-12">
+            @php
+            $url = route('user.view');
+        @endphp
+        <button type="submit" onclick="saveUpdate(this,'{{ $url }}')" class="btn btn-info float-right"><i class="bi bi-cloud-download"></i> Save</button>
+        </div>
+        </div>
+        </form>

@@ -8,7 +8,7 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row mx-2">
                     <div class="col-sm-6">
                         <h1 class="m-0">Manage User</h1>
                     </div><!-- /.col -->
@@ -30,18 +30,19 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <h5>User List </h5>
-                                <button class="btn btn-secondary ml-auto  btn-sm open_modal" data-modal="common_modal_md" data-action="{{ route('user.create.form') }}" data-title="Add User">
+                                <button class="btn btn-info ml-auto  btn-sm open_modal" data-modal="common_modal_lg" data-action="{{ route('user.create.form') }}" data-title="Add User">
                                     <i class="bi-plus-circle me-2"></i>
                                     Add User</button>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body pt-1">
                                 <table id="datatable"
-                                    class=" table table-striped table-sm text-center align-middle  table-bordered table-hover"
+                                    class=" table table-striped table-sm text-center align-middle  table-bordered table-hover data_table"
                                     style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>SL.</th>
                                             <th>Name</th>
+                                            <th>User Type</th>
                                             <th>Email</th>
                                             <th>Created At</th>
                                             <th>Action</th>
@@ -81,6 +82,10 @@
                     {
                         data: 'name',
                         name: 'name',
+                    },
+                    {
+                        data: 'user_type',
+                        name: 'user_type',
                     },
                     {
                         data: 'email',

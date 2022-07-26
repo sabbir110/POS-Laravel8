@@ -17,4 +17,7 @@ Route::prefix('users')->group(function () {
     Route::get('/view', [UserController::class, 'view'])->name('user.view');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
     Route::get('/create/form', [UserController::class, 'createForm'])->name('user.create.form');
+    Route::post('/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::post('/delete', [UserController::class, 'delete'])->name('user.delete');
 });
