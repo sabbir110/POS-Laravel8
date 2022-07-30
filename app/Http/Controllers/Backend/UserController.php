@@ -19,10 +19,12 @@ class UserController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
+                    $button = '';
                     $editUrl = route('user.edit');
                     $deleteUrl = route('user.delete');
-                    $button = ' <a href="javascript:void(0)" data-title="Update User Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="bi-pencil-square h4"></i></a>';
                     if ($data->status != 5) {
+                        $button = ' <a href="javascript:void(0)" data-title="Update User Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="bi-pencil-square h4"></i></a>';
+
                         $button .= '&nbsp;&nbsp;';
                         $button .= '<a href="javascript:void(0)" data-action="' . $deleteUrl . '" data-id="' . $data->id . '"  class="delete_data text-danger mx-1 deleteIcon"> <i class="bi-trash h4"></i></a>';
                     }
@@ -83,8 +85,7 @@ class UserController extends Controller
             User::create($data);
             $status = ['status' => 200, 'message' => "Data Added success"];
         } else {
-            User::where('id', $id)
-                ->update($data);
+            User::where('id', $id)->update($data);
             $status = ['status' => 200, 'message' => "Data Updated success"];
         }
         return response()->json($status);

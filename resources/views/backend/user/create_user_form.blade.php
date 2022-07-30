@@ -48,7 +48,7 @@
             @php
             $url = route('user.view');
         @endphp
-        <button type="submit" onclick="saveUpdate(this,'{{ $url }}')" class="btn btn-info float-right"><i class="bi bi-cloud-download"></i> Save</button>
+        <button type="submit" onclick="saveUpdate(this,'{{ $url }}','#datatable')" class="btn btn-info float-right"><i class="bi bi-cloud-download"></i> Save</button>
         </div>
         </div>
         </form>

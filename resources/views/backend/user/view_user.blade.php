@@ -6,17 +6,17 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
+        <div class="content-header mb-3 py-1" style="background: white;">
             <div class="container-fluid">
-                <div class="row mx-2">
+                <div class="row mx-2 py-1" >
                     <div class="col-sm-6">
-                        <h1 class="m-0">Manage User</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="">Manage</a></li>
-                            <li class="breadcrumb-item active">User</li>
-                        </ol>
+                        <h3 >Manage User</h3>
+                        <span class="font-italic">Manage/User</span>
+                    </div>
+                    <div class="col-sm-6 text-right pt-1">
+                        <button class="btn btn-info   btn-sm open_modal" data-modal="common_modal_lg" data-action="{{ route('user.create.form') }}" data-title="Add User">
+                            <i class="bi-plus-circle me-2"></i>
+                            Add New User</button>
                     </div>
                 </div>
             </div>
@@ -28,11 +28,8 @@
                     <!-- Left col -->
                     <section class="col-lg-12">
                         <div class="card">
-                            <div class="card-header d-flex justify-content-between">
+                            <div class="card-header pb-0 pt-0  bg-secondary bg-gradient">
                                 <h5>User List </h5>
-                                <button class="btn btn-info ml-auto  btn-sm open_modal" data-modal="common_modal_lg" data-action="{{ route('user.create.form') }}" data-title="Add User">
-                                    <i class="bi-plus-circle me-2"></i>
-                                    Add User</button>
                             </div>
                             <div class="card-body pt-1">
                                 <table id="datatable"

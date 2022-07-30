@@ -47,7 +47,7 @@
 
         <!-- Navbar -->
         <nav class="main-header d-flex navbar-expand"
-            style="background-image: linear-gradient(rgba(24, 56, 68, 0.642), rgba(24, 56, 68, 0.642));">
+            style="background: rgb(0,108,130);background: linear-gradient(90deg, rgb(0, 108, 130) 0%, rgb(0, 115, 130) 100%);">
             <!-- Left navbar links -->
             <ul class="navbar-nav ">
                 <li class="nav-item">

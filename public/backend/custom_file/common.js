@@ -64,7 +64,7 @@ $(document).on('click', '.delete_data', function (e) {
 })
 
 //Form Submit
-function saveUpdate(element, redirectUrl = '') {
+function saveUpdate(element, redirectUrl = '',data_table='') {
     event.preventDefault();
     var formAction = $(element).parents("form").attr("action");
     var formId = $(element).parents("form").attr("id");
@@ -84,13 +84,11 @@ function saveUpdate(element, redirectUrl = '') {
             $("#" + formId)[0].reset();
             $(document).find('span.error_text').text('');
             $('.modal').modal('hide');
-            $(".data_table").DataTable().ajax.reload(null, false);
-            // window.history.pushState('', 'New Page Title', '/');
-            // window.history.replaceState(null, null, '/');
-            // history.pushState({}, null, '/');
+            if(data_table == null || data_table){
+                $(data_table).DataTable().ajax.reload(null, false);
+            }
             // window.history.pushState({ path: '/' }, '', '/');
             window.location.href =redirectUrl;
-            // window.location.replace("http://www.w3schools.com");
             alert(res.message)
             document.querySelector(".show_img").setAttribute("src","");
         },
