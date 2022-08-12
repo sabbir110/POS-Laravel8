@@ -17,11 +17,11 @@ $id = isset($user->id) ? $user->id : '';
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <div class="content-header mb-3 py-1" style="background: white;">
-            <div class="container-fluid">
-                <div class="row mx-2 py-1">
+        <div class="content-header mb-3 pb-2" style="background: white;">
+            <div class="container-fluid" style="line-height: 0;">
+                <div class="row mx-2">
                     <div class="col-sm-6">
-                        <h3>Manage Profile</h3>
+                        <h3 style="line-height: 1;">Manage Profile</h3>
                         <span class="font-italic">Manage/Profile</span>
                     </div>
                     <div class="col-sm-6 text-right pt-1">
@@ -49,7 +49,7 @@ $id = isset($user->id) ? $user->id : '';
 
                                 <p class="text-muted text-center">{{ $address }}</p>
 
-                                <table width="100%" class="table table-bordered">
+                                <table width="100%" class="table table-bordered" id="datatable">
                                     <thead>
                                         <tr><td><strong>Mobile No</strong></td><td>{{ $mobile }}</td></tr>
                                         <tr><td><strong>Email</strong></td><td>{{ $email }}</td></tr>

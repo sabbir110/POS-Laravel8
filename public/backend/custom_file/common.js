@@ -45,7 +45,7 @@ $(document).on('click', '.delete_data', function (e) {
             data: {
                 id: id,
             },
-            type: "post",
+            type: "delete",
             beforeSend: function () {
             },
             success: function (res) {

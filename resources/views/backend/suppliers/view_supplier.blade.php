@@ -10,13 +10,13 @@
             <div class="container-fluid" style="line-height: 0;">
                 <div class="row mx-2" >
                     <div class="col-sm-6">
-                        <h3  style="line-height: 1;">Manage User</h3>
-                        <span class="font-italic">Manage/User</span>
+                        <h3  style="line-height: 1;">Manage Supplier</h3>
+                        <span class="font-italic">Manage/Supplier</span>
                     </div>
                     <div class="col-sm-6 text-right mt-2">
-                        <button class="btn btn-info   btn-sm open_modal" data-modal="common_modal_lg" data-action="{{ route('user.create.form') }}" data-title="Add User">
+                        <button class="btn btn-info   btn-sm open_modal" data-modal="common_modal_lg" data-action="{{ route('supplier.create_form') }}" data-title="Add Supplier">
                             <i class="bi-plus-circle me-2"></i>
-                            Add New User</button>
+                            Add Supplier</button>
                     </div>
                 </div>
             </div>
@@ -38,10 +38,12 @@
                                     <thead>
                                         <tr>
                                             <th>SL.</th>
-                                            <th>Name</th>
-                                            <th>User Type</th>
+                                            <th>Supplier Name</th>
+                                            <th>Mobile No.</th>
                                             <th>Email</th>
+                                            <th>Address</th>
                                             <th>Created At</th>
+                                            <th>Last Update</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -66,7 +68,7 @@
             var table = $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('user.view') }}",
+                ajax: "{{ route('supplier.index') }}",
                 "pageLength": 20,
                 "aLengthMenu": [
                     [20, 25, 30, 50, -1],
@@ -81,16 +83,29 @@
                         name: 'name',
                     },
                     {
-                        data: 'user_type',
-                        name: 'user_type',
+                        data: 'mobile_no',
+                        name: 'mobile_no',
                     },
                     {
                         data: 'email',
                         name: 'email',
                     },
                     {
+                        data: 'address',
+                        name: 'address',
+                    },
+                    {
                         data: 'created_at',
                         name: 'created_at',
+                        render: function(data, type, full, meta) {
+                            var d = new Date(data);
+                            return `${d.getDate()+'/'+(d.getMonth() + 1)+'/'+d.getFullYear()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()}`;
+                        },
+                        orderable: false
+                    },
+                    {
+                        data: 'updated_at',
+                        name: 'updated_at',
                         render: function(data, type, full, meta) {
                             var d = new Date(data);
                             return `${d.getDate()+'/'+(d.getMonth() + 1)+'/'+d.getFullYear()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()}`;

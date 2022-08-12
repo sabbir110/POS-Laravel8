@@ -11,6 +11,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function view(Request $request)
     {
 
@@ -23,7 +28,7 @@ class UserController extends Controller
                     $editUrl = route('user.edit');
                     $deleteUrl = route('user.delete');
                     if ($data->status != 5) {
-                        $button = ' <a href="javascript:void(0)" data-title="Update User Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="bi-pencil-square h4"></i></a>';
+                        $button = ' <a href="javascript:void(0)" data-title="Edit User Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="bi-pencil-square h4"></i></a>';
 
                         $button .= '&nbsp;&nbsp;';
                         $button .= '<a href="javascript:void(0)" data-action="' . $deleteUrl . '" data-id="' . $data->id . '"  class="delete_data text-danger mx-1 deleteIcon"> <i class="bi-trash h4"></i></a>';
@@ -38,10 +43,6 @@ class UserController extends Controller
 
     public function create()
     {
-
-        // $auth_id = Auth::id();AU_ENTRY_AT
-
-        // dd($auth_id);
         return view('backend.user.create_user');
     }
 
@@ -52,8 +53,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-
-
         $id = $request->user_id;
         $data = [];
         $data = [
@@ -69,7 +68,7 @@ class UserController extends Controller
                     'user_type' => 'required',
                     'email' => 'required|email|unique:users',
                     'name' => 'required|min:2|max:191',
-                    'password1' => 'required',
+                    'password1' => 'required|min:8|max:20',
                     'password2' => 'required|same:password1',
                 ],
                 [

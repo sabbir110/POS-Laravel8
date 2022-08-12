@@ -8,8 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+
 class ProfileController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function view()
     {
 
@@ -49,5 +55,33 @@ class ProfileController extends Controller
         User::where('id', $id)->update($data);
 
         return response()->json(['status' => 200, 'message' => "Data Updated success"]);
+    }
+
+    public function change_password()
+    {
+        return view('backend.user.profile.change_password');
+    }
+
+    public function update_password(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'old_password' =>[
+                    'required', function($attribute, $value, $fail){
+                        if( !\Hash::check($value, Auth::user()->password) ){
+                            return $fail(__('The current password is incorrect'));
+                        }
+                    },
+                    'min:8',
+                    'max:30'
+                 ],
+                'new_password' => 'required|min:8|max:20',
+                'confirm_password' => 'required|same:new_password',
+            ]
+        );
+
+        User::find(Auth::user()->id)->update(['password'=>bcrypt($request->new_password)]);
+        return response()->json(['status' => 200, 'message' => "Password Change success"]);
     }
 }

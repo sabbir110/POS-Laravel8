@@ -59,8 +59,10 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link text-light" data-toggle="dropdown" href="#">
-                        <span>{{ Auth::user()->name }}</span>
+                    <a class="nav-link text-light" data-toggle="dropdown" style="padding: 0rem 1rem;" href="">
+                        <img src="{{ (!empty(Auth::user()->image)) ? url('/storage/upload/user_image/'.Auth::user()->image)  : url('/storage/upload/no_image.png') }}" class="img-circle" style="width: 30px;"
+                        alt="User Image">
+                       <strong style="font-size: 20px;">{{ Auth::user()->name }}</strong>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
@@ -79,8 +81,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-secondary elevation-4">
             <!-- Brand Logo -->
-            <a href="" class="brand-link">
-                <img src="{{ asset('backend') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+            <a href="{{ route('home') }}" class="brand-link bg-info" style="padding: 5px 5px;">
+                <img src="{{ asset('backend') }}/dist/img/AdminLTELogo.png" alt="Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">POS System</span>
             </a>
@@ -88,15 +90,7 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{ asset('backend') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                            alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
-                    </div>
-                </div>
+
                 <!-- Sidebar Menu -->
                 @include('backend.layouts.sidebar')
                 <!-- /.sidebar-menu -->
@@ -106,7 +100,6 @@
         {{-- Body part start --}}
         @yield('content')
         {{-- Body part end --}}
-
         <footer class="main-footer">
             <strong>Copyright &copy;POS System.</strong>
             <div class="float-right d-none d-sm-inline-block">
