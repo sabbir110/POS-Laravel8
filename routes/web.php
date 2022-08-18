@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SupplierController;
+use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,8 +34,16 @@ Route::prefix('Profiles')->group(function () {
 
 });
 
+//Manage Supplier
 Route::resource('supplier', SupplierController::class);
 Route::get('/supplier/create/form', [SupplierController::class, 'createForm'])->name('supplier.create_form');
+
+//Customer Supplier
+Route::resource('customer', CustomerController::class);
+Route::get('/customer/create/form', [CustomerController::class, 'create_customer_form'])->name('customer.create_form');
+//Unit Supplier
+Route::resource('unit', UnitController::class);
+Route::get('/unit/create/form', [UnitController::class, 'create_unit_form'])->name('unit.create_form');
 
 
 
