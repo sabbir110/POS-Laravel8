@@ -121,5 +121,28 @@ $route = Route::current()->getName();
             </ul>
         </li>
 
+        <li class="nav-item mt-2 {{ Request::is('category*') ? 'menu-open ' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('category*') ? 'bg-primary' : 'bg-secondary' }}"><i class="nav-icon fas fa-copy"></i><p>Manage Category</p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('category.index') }}"
+                        class="nav-link {{ $route === 'category.index' ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Category List</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('category.create') }}"
+                        class="nav-link {{ $route === 'category.create' ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add New Category</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 </nav>

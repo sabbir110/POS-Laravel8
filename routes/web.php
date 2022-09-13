@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SupplierController;
@@ -44,6 +45,10 @@ Route::get('/customer/create/form', [CustomerController::class, 'create_customer
 //Unit Supplier
 Route::resource('unit', UnitController::class);
 Route::get('/unit/create/form', [UnitController::class, 'create_unit_form'])->name('unit.create_form');
+
+//Manage Category
+Route::resource('category', CategoryController::class);
+Route::get('/category/create/form', [CategoryController::class, 'create_category_form'])->name('category.create_form');
 
 
 

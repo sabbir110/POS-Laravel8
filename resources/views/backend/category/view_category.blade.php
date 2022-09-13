@@ -10,13 +10,13 @@
             <div class="container-fluid" style="line-height: 0;">
                 <div class="row mx-2" >
                     <div class="col-sm-6">
-                        <h3  style="line-height: 1;">Manage Customers</h3>
-                        <span class="font-italic">Manage/Customers</span>
+                        <h3  style="line-height: 1;">Manage Category</h3>
+                        <span class="font-italic">Manage/Category</span>
                     </div>
                     <div class="col-sm-6 text-right mt-2">
-                        <button class="btn btn-info   btn-sm open_modal" data-modal="common_modal_lg" data-action="{{ route('customer.create_form') }}" data-title="Add Customer">
+                        <button class="btn btn-info   btn-sm open_modal" data-modal="common_modal_lg" data-action="{{ route('category.create_form') }}" data-title="Add Category">
                             <i class="bi-plus-circle me-2"></i>
-                            Add Customer</button>
+                            Add Category</button>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header pb-0 pt-0  bg-secondary bg-gradient">
-                                <h5>Customer List </h5>
+                                <h5>Category List </h5>
                             </div>
                             <div class="card-body pt-1">
                                 <table id="datatable"
@@ -38,10 +38,7 @@
                                     <thead>
                                         <tr>
                                             <th>SL.</th>
-                                            <th>Customer Name</th>
-                                            <th>Mobile No.</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
+                                            <th>category Name</th>
                                             <th>Created At</th>
                                             <th>Last Update</th>
                                             <th>Action</th>
@@ -68,31 +65,19 @@
             var table = $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('customer.index') }}",
+                ajax: "{{ route('category.index') }}",
                 "pageLength": 20,
                 "aLengthMenu": [
                     [20, 25, 30, 50, -1],
-                    [20, 25, 30, 50, "All"]
+                    [20, 25, 30, 50, 500]
                 ],
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'name',
-                        name: 'name',
-                    },
-                    {
-                        data: 'mobile_no',
-                        name: 'mobile_no',
-                    },
-                    {
-                        data: 'email',
-                        name: 'email',
-                    },
-                    {
-                        data: 'address',
-                        name: 'address',
+                        data: 'category_name',
+                        name: 'category_name',
                     },
                     {
                         data: 'created_at',

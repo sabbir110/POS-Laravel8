@@ -28,10 +28,10 @@ class UserController extends Controller
                     $editUrl = route('user.edit');
                     $deleteUrl = route('user.delete');
                     if ($data->status != 5) {
-                        $button = ' <a href="javascript:void(0)" data-title="Edit User Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="bi-pencil-square h4"></i></a>';
+                        $button = ' <a href="javascript:void(0)" data-title="Edit User Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="nav-icon fas fa-edit"></i></a>';
 
                         $button .= '&nbsp;&nbsp;';
-                        $button .= '<a href="javascript:void(0)" data-action="' . $deleteUrl . '" data-id="' . $data->id . '"  class="delete_data text-danger mx-1 deleteIcon"> <i class="bi-trash h4"></i></a>';
+                        $button .= '<a href="javascript:void(0)" data-action="' . $deleteUrl . '" data-id="' . $data->id . '"  class="delete_data text-danger mx-1 deleteIcon"> <i class="far fa-trash-alt"></i></a>';
                     }
                     return $button;
                 })
@@ -40,6 +40,7 @@ class UserController extends Controller
         }
         return view('backend.user.view_user');
     }
+    // class="far fa-trash-alt"
 
     public function create()
     {

@@ -3,25 +3,26 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Customer;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
-class CustomerController extends Controller
+class CategoryController extends Controller
 {
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
-            $data = Customer::orderBy('id', 'DESC')->get();
+            $data = Category::orderBy('id', 'DESC')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     $button = '';
-                    $editUrl = route('customer.edit', $data->id);
-                    $deleteUrl = route('customer.destroy', $data->id);
+                    $editUrl = route('category.edit', $data->id);
+                    $deleteUrl = route('category.destroy',$data->id);
                     if ($data->status != 5) {
-                        $button = ' <a href="javascript:void(0)" data-title="Edit customer Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="nav-icon fas fa-edit"></i>
+                        $button = ' <a href="javascript:void(0)" data-title="Edit category Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="nav-icon fas fa-edit"></i>
                         </a>';
 
                         $button .= '&nbsp;&nbsp;';
@@ -32,62 +33,63 @@ class CustomerController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('backend.customers.view_customer');
+        return view('backend.category.view_category');
     }
 
-    public function create_customer_form()
+    public function create_category_form()
     {
-        return view('backend.customers.create_customer_form');
+        return view('backend.category.create_category_form');
     }
     public function create()
     {
-        return view('backend.customers.create_customer');
+        return view('backend.category.create_category');
     }
+
     public function store(Request $request)
     {
         $this->validate(
             $request,
             [
-                'name' => 'required|min:2|max:191',
-                'mobile' => 'required',
+                'category_name' => 'required|min:2|max:50',
             ]
         );
-        $id = $request->user_id;
+        $id = $request->category_id;
         $data = [];
         $data = [
-            'name' => $request->name,
-            'mobile_no' => $request->mobile,
-            'address' => $request->address,
-            'email' => $request->email,
+            'category_name' => $request->category_name,
         ];
 
         if ($id == null || $id == "") {
             $data['created_by'] = Auth::id();
-            Customer::create($data);
+            Category::create($data);
             $status = ['status' => 200, 'message' => "Data Added success"];
         } else {
             $data['updated_by'] = Auth::id();
-            Customer::where('id', $id)->update($data);
+            Category::where('id', $id)->update($data);
             $status = ['status' => 200, 'message' => "Data Updated success"];
         }
         return response()->json($status);
     }
+
     public function show($id)
     {
         //
     }
+
     public function edit($id)
     {
-        $customer_data = Customer::find($id);
-        return view('backend.customers.create_customer_form', compact('customer_data'));
+        $category_data = Category::find($id);
+        return view('backend.category.create_category_form', compact('category_data'));
     }
+
     public function update(Request $request, $id)
     {
         //
     }
+
     public function destroy($id)
     {
-        $stdData = Customer::destroy($id);
-        return response()->json(['status' => 200, 'message' => "Student Data Deleted success!!!!"]);
+        $Category = Category::destroy($id);
+        return response()->json(['status' => 200, 'message' => "Category Deleted success!!!!"]);
     }
 }
