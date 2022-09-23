@@ -144,5 +144,28 @@ $route = Route::current()->getName();
             </ul>
         </li>
 
+        <li class="nav-item mt-2 {{ Request::is('product*') ? 'menu-open ' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('product*') ? 'bg-primary' : 'bg-secondary' }}"><i class="nav-icon fas fa-copy"></i><p>Manage Product</p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('product.index') }}"
+                        class="nav-link {{ $route === 'product.index' ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Product List</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('product.create') }}"
+                        class="nav-link {{ $route === 'product.create' ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add New Product</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 </nav>

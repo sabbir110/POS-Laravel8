@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UnitController;
@@ -49,6 +50,10 @@ Route::get('/unit/create/form', [UnitController::class, 'create_unit_form'])->na
 //Manage Category
 Route::resource('category', CategoryController::class);
 Route::get('/category/create/form', [CategoryController::class, 'create_category_form'])->name('category.create_form');
+
+//Manage Product
+Route::resource('product', ProductController::class);
+Route::get('/product/create/form', [ProductController::class, 'create_product_form'])->name('product.create_form');
 
 
 

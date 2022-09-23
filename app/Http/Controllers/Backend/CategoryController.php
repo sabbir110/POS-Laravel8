@@ -20,14 +20,12 @@ class CategoryController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '';
                     $editUrl = route('category.edit', $data->id);
-                    $deleteUrl = route('category.destroy',$data->id);
-                    if ($data->status != 5) {
-                        $button = ' <a href="javascript:void(0)" data-title="Edit category Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="nav-icon fas fa-edit"></i>
+                    $deleteUrl = route('category.destroy', $data->id);
+                    $button = ' <a href="javascript:void(0)" data-title="Edit category Info.."  data-action="' . $editUrl . '" data-modal="common_modal_lg" data-id="' . $data->id . '" class="open_modal text-primary mx-1"><i class="nav-icon fas fa-edit"></i>
                         </a>';
 
-                        $button .= '&nbsp;&nbsp;';
-                        $button .= '<a href="javascript:void(0)" data-action="' . $deleteUrl . '" data-id="' . $data->id . '"  class="delete_data text-danger mx-1 deleteIcon"><i class="far fa-trash-alt"></a>';
-                    }
+                    $button .= '&nbsp;&nbsp;';
+                    $button .= '<a href="javascript:void(0)" data-action="' . $deleteUrl . '" data-id="' . $data->id . '"  class="delete_data text-danger mx-1 deleteIcon"><i class="far fa-trash-alt"></a>';
                     return $button;
                 })
                 ->rawColumns(['action'])

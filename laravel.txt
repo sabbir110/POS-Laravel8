@@ -1,0 +1,14 @@
+composer create-project laravel/laravel:^8.0 example-app
+
+Route::get('/',[StudentController::class,'index'])->name('index');
+
+DB::table('students')->insert(['name'=>$request->name]);
+DB::table('students')->where('id',$id)->update(['name'=>$request->name]);
+
+ return redirect(route('index'))->with('status','Student Updated !!');
+
+@if (session()->has('status'))
+            <div class="alert alert-success">
+                {{session('status')}}
+            </div>
+            @endif
