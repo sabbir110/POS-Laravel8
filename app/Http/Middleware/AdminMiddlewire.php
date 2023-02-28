@@ -20,7 +20,8 @@ class AdminMiddlewire
         if(Auth::user()->user_type == 'admin'){
             return $next($request);
         }else{
-            return redirect('/home');
+            return redirect('/dashboard');
         }
+
     }
 }

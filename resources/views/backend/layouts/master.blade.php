@@ -25,7 +25,32 @@
     {{-- <link rel="stylesheet" href="{{ asset('backend') }}/plugins/daterangepicker/daterangepicker.css"> --}}
     <!-- summernote -->
     {{-- <link rel="stylesheet" href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.css"> --}}
+<style>
+    .loading{
+        z-index: 20;
+        position: absolute;
+        top: 0;
+        left: -5px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4)
+    }
+    .loading_content{
+        position: absolute;
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        top: 50%;
+        left: 50%;
+        animation: spin 1s linear infinite;
+    }
 
+    @keyframes spin {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(360deg)}
+    }
+</style>
     @stack('css')
     <!-- jQuery -->
     <script src="{{ asset('backend') }}/plugins/jquery/jquery.min.js"></script>
@@ -37,9 +62,12 @@
         @include('backend.common_file.common_modal')
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        {{-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo"
                 height="60" width="60">
+        </div> --}}
+        <div id="loading">
+            <div id="loading_content"></div>
         </div>
 
         <!-- Navbar -->
@@ -57,9 +85,9 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link text-light" data-toggle="dropdown" style="padding: 0rem 1rem;" href="">
-                        <img src="{{ (!empty(Auth::user()->image)) ? url('/storage/upload/user_image/'.Auth::user()->image)  : url('/storage/upload/no_image.png') }}" class="img-circle" style="width: 30px;"
-                        alt="User Image">
-                       <strong style="font-size: 20px;">{{ Auth::user()->name }}</strong>
+                        <img src="{{ !empty(Auth::user()->image) ? url('/storage/upload/user_image/' . Auth::user()->image) : url('/storage/upload/no_image.png') }}"
+                            class="img-circle" style="width: 30px;" alt="User Image">
+                        <strong style="font-size: 20px;">{{ Auth::user()->name }}</strong>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
@@ -76,12 +104,12 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-secondary elevation-4">
+        <aside class="main-sidebar sidebar-dark-secondary elevation-4  bg-navy">
             <!-- Brand Logo -->
             <a href="{{ route('home') }}" class="brand-link bg-info" style="padding: 5px 5px;">
                 <img src="{{ asset('backend') }}/dist/img/AdminLTELogo.png" alt="Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">POS System</span>
+                <span class="brand-text font-weight-light">Inventory</span>
             </a>
 
             <!-- Sidebar -->
@@ -136,6 +164,18 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('backend') }}/dist/js/adminlte.js"></script>
     @stack('js')
+
+    <script>
+        $(document).ajaxStart(function() {
+            $('#loading').addClass('loading')
+            $('#loading_content').addClass('loading_content')
+        })
+
+        $(document).ajaxStop(function() {
+            $('#loading').removeClass('loading')
+            $('#loading_content').removeClass('loading_content')
+        })
+    </script>
 
 </body>
 

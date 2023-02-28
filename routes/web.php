@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Backend\UserController;
@@ -18,7 +19,7 @@ Auth::routes();
 
 Route::group(['middleware'=>'auth'],function(){
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::prefix('users')->group(function () {
     Route::get('/view', [UserController::class, 'view'])->name('user.view');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
@@ -54,6 +55,10 @@ Route::get('/category/create/form', [CategoryController::class, 'create_category
 //Manage Product
 Route::resource('product', ProductController::class);
 Route::get('/product/create/form', [ProductController::class, 'create_product_form'])->name('product.create_form');
+
+//Manage Purchase
+Route::resource('purchase', PurchaseController::class);
+Route::get('/purchase/create/form', [PurchaseController::class, 'create_purchase_form'])->name('purchase.create_form');
 
 
 
